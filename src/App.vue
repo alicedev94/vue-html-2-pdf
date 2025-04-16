@@ -25,8 +25,8 @@ const { handlePrint } = useVueToPrint({
 						<span class="value client-name">ANDREINA FABIOLA DIMAS BARRIOS</span>
 					</div>
 					<div class="fecha-section">
-						<span class="label">Fecha</span>
-						<span class="value">18/04/2025</span>
+						<span class="label-2">Fecha</span>
+						<span class="label-2 value">18/04/2025</span>
 					</div>
 				</div>
 
@@ -34,8 +34,8 @@ const { handlePrint } = useVueToPrint({
 				<div class="identificacion-row">
 					<div></div>
 					<div class="id-section">
-						<span class="label">Número de identificación</span>
-						<span class="value">J-0000000-1</span>
+						<span class="label-2">Número de identificación</span>
+						<span class="label-2 value">J-0000000-1</span>
 					</div>
 				</div>
 
@@ -94,8 +94,8 @@ const { handlePrint } = useVueToPrint({
 				<!-- Pie de página -->
 				<div class="sap-footer">
 					<div class="footer-contact">
-						<p>Teléfono: (0212) 555-5555</p>
 						<p>Dirección: Av. Principal, Edif. Central, Caracas, Venezuela</p>
+						<p>Teléfono: (0212) 555-5555</p>
 					</div>
 				</div>
 			</div>
@@ -135,8 +135,8 @@ const { handlePrint } = useVueToPrint({
 	display: flex;
 	justify-content: center;
 	padding-bottom: 15px;
+	margin-top: 20px;
 	margin-bottom: 20px;
-	border-bottom: 2px solid #000;
 }
 
 .header-item {
@@ -151,6 +151,7 @@ const { handlePrint } = useVueToPrint({
 .info-row {
 	display: flex;
 	justify-content: space-between;
+	margin-top: 30px;
 	margin-bottom: 10px;
 }
 
@@ -161,6 +162,12 @@ const { handlePrint } = useVueToPrint({
 }
 
 .label {
+	font-weight: bold;
+	margin-right: 10px;
+}
+
+.label-2 {
+	font-size: small;
 	font-weight: bold;
 	margin-right: 10px;
 }
@@ -189,7 +196,9 @@ const { handlePrint } = useVueToPrint({
 .receipt-section {
 	display: flex;
 	justify-content: center;
-	margin: 25px 0;
+	/* margin: 25px 0; */
+	margin-top: 70px;
+	margin-bottom: 180px;
 }
 
 .receipt-item {
@@ -304,6 +313,10 @@ const { handlePrint } = useVueToPrint({
 	text-align: center;
 }
 
+.footer-contact {
+	display: flex;
+	justify-content: space-between;
+}
 .footer-contact p {
 	margin: 3px 0;
 	font-size: 12px;
