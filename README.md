@@ -25,3 +25,5 @@ Accede a la aplicación en `http://localhost:5173`
 - Vue 3
 - Vite
 - vue-to-print
+
+# El documento que se muestra por defecto es la base de todos los demás.
