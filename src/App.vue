@@ -9,6 +9,44 @@ import { ref } from 'vue';
 // Referencia al componente que será impreso
 const componentRef = ref();
 
+// Datos del comprobante en formato JSON estático
+const comprobanteData = {
+	empresa: {
+		nombre: 'Tiendas daka, C.A.',
+		direccion: 'Av. Principal, Edif. Central, Caracas, Venezuela',
+		telefono: '(0212) 555-5555'
+	},
+	cliente: {
+		nombre: 'ANDREINA FABIOLA DIMAS BARRIOS',
+		identificacion: {
+			tipo: 'J',
+			numero: '0000000-1'
+		}
+	},
+	comprobante: {
+		fecha: '18/04/2025',
+		numero: '5613316',
+		tipo: 'Original'
+	},
+	transaccion: {
+		fondosEfectivo: {
+			moneda: 'Bs',
+			monto: '1.000,00'
+		},
+		pagoACuenta: {
+			monto: '1.000,00'
+		},
+		total: {
+			moneda: 'Bs',
+			monto: '1.000,00'
+		}
+	},
+	operacion: {
+		autor: 'Manager',
+		comentarios: 'Comentarios del operador'
+	}
+};
+
 // Configuración del hook de impresión
 const { handlePrint } = useVueToPrint({
 	content: componentRef,
@@ -23,7 +61,7 @@ const { handlePrint } = useVueToPrint({
 			<div class="sap-documento">
 				<!-- Encabezado: Nombre empresa centrado con subrayado -->
 				<div class="header-row">
-					<div class="header-item">Tiendas daka, C.A.</div>
+					<div class="header-item">{{ comprobanteData.empresa.nombre }}</div>
 				</div>
 
 				<!-- Sección de información del cliente y fecha -->
@@ -31,12 +69,12 @@ const { handlePrint } = useVueToPrint({
 					<!-- Sección destinatario -->
 					<div class="hasta-section">
 						<span class="label">Hasta</span>
-						<span class="value client-name">ANDREINA FABIOLA DIMAS BARRIOS</span>
+						<span class="value client-name">{{ comprobanteData.cliente.nombre }}</span>
 					</div>
 					<!-- Sección fecha -->
 					<div class="fecha-section">
 						<span class="label-2">Fecha</span>
-						<span class="label-2 value">18/04/2025</span>
+						<span class="label-2 value">{{ comprobanteData.comprobante.fecha }}</span>
 					</div>
 				</div>
 
@@ -45,29 +83,33 @@ const { handlePrint } = useVueToPrint({
 					<div></div>
 					<div class="id-section">
 						<span class="label-2">Número de identificación</span>
-						<span class="label-2 value">J-0000000-1</span>
+						<span class="label-2 value"
+							>{{ comprobanteData.cliente.identificacion.tipo }}-{{
+								comprobanteData.cliente.identificacion.numero
+							}}</span
+						>
 					</div>
 				</div>
 
 				<!-- Sección de información del recibo -->
 				<div class="receipt-section">
 					<div class="receipt-item">Recibo</div>
-					<div class="receipt-item">5613316</div>
-					<div class="receipt-item">Original</div>
+					<div class="receipt-item">{{ comprobanteData.comprobante.numero }}</div>
+					<div class="receipt-item">{{ comprobanteData.comprobante.tipo }}</div>
 				</div>
 
 				<!-- Sección de información de pago en efectivo -->
 				<div class="payment-row fondos">
 					<div class="payment-label">Fondos en efectivo</div>
 					<div class="payment-box">
-						<span class="currency">Bs</span>
-						<span class="amount">1.000,00</span>
+						<span class="currency">{{ comprobanteData.transaccion.fondosEfectivo.moneda }}</span>
+						<span class="amount">{{ comprobanteData.transaccion.fondosEfectivo.monto }}</span>
 					</div>
 				</div>
 
 				<!-- Sección de autorización -->
 				<div class="author-row">
-					<div class="author-label">Autor: Manager</div>
+					<div class="author-label">Autor: {{ comprobanteData.operacion.autor }}</div>
 					<div></div>
 					<!-- Espacio vacío para alineación -->
 				</div>
@@ -76,12 +118,12 @@ const { handlePrint } = useVueToPrint({
 				<div class="payment-row comments">
 					<div class="comments-section">
 						<span class="label">Comentarios</span>
-						<span class="value">Comentarios del operador</span>
+						<span class="value">{{ comprobanteData.operacion.comentarios }}</span>
 					</div>
 					<div class="payment-account">
 						<div class="payment-label">Pago a cuenta</div>
 						<div class="payment-box">
-							<span class="amount">1.000,00</span>
+							<span class="amount">{{ comprobanteData.transaccion.pagoACuenta.monto }}</span>
 						</div>
 					</div>
 				</div>
@@ -95,8 +137,8 @@ const { handlePrint } = useVueToPrint({
 					<div class="total-section">
 						<span class="total-label">Total</span>
 						<div class="total-box">
-							<span class="currency">Bs</span>
-							<span class="amount">1.000,00</span>
+							<span class="currency">{{ comprobanteData.transaccion.total.moneda }}</span>
+							<span class="amount">{{ comprobanteData.transaccion.total.monto }}</span>
 						</div>
 					</div>
 				</div>
@@ -104,8 +146,8 @@ const { handlePrint } = useVueToPrint({
 				<!-- Pie de página con información de contacto -->
 				<div class="sap-footer">
 					<div class="footer-contact">
-						<p>Dirección: Av. Principal, Edif. Central, Caracas, Venezuela</p>
-						<p>Teléfono: (0212) 555-5555</p>
+						<p>Dirección: {{ comprobanteData.empresa.direccion }}</p>
+						<p>Teléfono: {{ comprobanteData.empresa.telefono }}</p>
 					</div>
 				</div>
 			</div>
