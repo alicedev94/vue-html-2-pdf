@@ -1,4 +1,4 @@
-# Vue HTML 2 PDF
+# vue-to-print-html
 
 Proyecto para convertir componentes de Vue en archivos PDF.
 
