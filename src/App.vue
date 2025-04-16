@@ -26,6 +26,19 @@ const { handlePrint } = useVueToPrint({
 						<p class="text">16/4/2025</p>
 					</div>
 				</div>
+
+				<!-- other section page -->
+				<div class="section-info">
+					<p class="text">Número de identificación</p>
+					<p class="text">J-0000000-1</p>
+				</div>
+
+				<!-- other section page -->
+				<div class="section-ticket">
+					<p class="text-2x text-bold">Recibo</p>
+					<p class="text-2x text-bold">5613316</p>
+					<p class="text-2x text-bold">Original</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -74,11 +87,26 @@ const { handlePrint } = useVueToPrint({
 	margin-left: 5px;
 	margin-right: 5px;
 }
+
+.text-2x {
+	font-size: 25px;
+	margin: 0 45px;
+}
+
 .text-bold {
 	font-weight: bold;
 }
 .separator {
 	display: flex;
 	margin: 0 10px;
+}
+
+.section-info {
+	display: flex;
+	align-self: flex-end;
+}
+.section-ticket {
+	display: flex;
+	align-self: center;
 }
 </style>
