@@ -1,5 +1,27 @@
-# Vue 3 + Vite
+# Vue HTML 2 PDF
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Proyecto para convertir componentes de Vue en archivos PDF.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## Requisitos previos
+
+- Node.js
+
+## Instalación
+
+```bash
+npm install
+```
+
+## Ejecución local
+
+```bash
+npm run dev
+```
+
+Accede a la aplicación en `http://localhost:5173`
+
+## Tecnologías utilizadas
+
+- Vue 3
+- Vite
+- vue-to-print
