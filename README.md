@@ -1,3 +1,5 @@
+### El documento que se muestra por defecto es la base de todos los demás.
+
 # vue-to-print-html
 
 Proyecto para convertir componentes de Vue en archivos PDF.
@@ -26,4 +28,4 @@ Accede a la aplicación en `http://localhost:5173`
 - Vite
 - vue-to-print
 
-# El documento que se muestra por defecto es la base de todos los demás.
+
