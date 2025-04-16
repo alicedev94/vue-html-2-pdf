@@ -1,8 +1,15 @@
 <script setup>
+/*
+ * Configuración del componente de impresión
+ * Utiliza vue-to-print para generar un comprobante imprimible de SAP B1
+ */
 import { useVueToPrint } from 'vue-to-print';
 import { ref } from 'vue';
 
+// Referencia al componente que será impreso
 const componentRef = ref();
+
+// Configuración del hook de impresión
 const { handlePrint } = useVueToPrint({
 	content: componentRef,
 	documentTitle: 'SAP_B1_Comprobante'
@@ -10,27 +17,30 @@ const { handlePrint } = useVueToPrint({
 </script>
 
 <template>
-	<div class="componentRef" ref="componentRef">
-		<div class="content-box">
-			<div class="sap-document">
-				<!-- Encabezado: Nombre empresa centrado con línea debajo -->
+	<!-- Contenedor principal que será impreso -->
+	<div class="comprobante-container" ref="componentRef">
+		<div class="comprobante-content">
+			<div class="sap-documento">
+				<!-- Encabezado: Nombre empresa centrado con subrayado -->
 				<div class="header-row">
 					<div class="header-item">Tiendas daka, C.A.</div>
 				</div>
 
-				<!-- Línea 1: "Hasta" con nombre y fecha con space-between -->
+				<!-- Sección de información del cliente y fecha -->
 				<div class="info-row">
+					<!-- Sección destinatario -->
 					<div class="hasta-section">
 						<span class="label">Hasta</span>
 						<span class="value client-name">ANDREINA FABIOLA DIMAS BARRIOS</span>
 					</div>
+					<!-- Sección fecha -->
 					<div class="fecha-section">
 						<span class="label-2">Fecha</span>
 						<span class="label-2 value">18/04/2025</span>
 					</div>
 				</div>
 
-				<!-- Línea 2: Número de identificación alineado a la derecha -->
+				<!-- Sección de identificación fiscal -->
 				<div class="identificacion-row">
 					<div></div>
 					<div class="id-section">
@@ -39,14 +49,14 @@ const { handlePrint } = useVueToPrint({
 					</div>
 				</div>
 
-				<!-- Línea 3: Recibo, número, original (centrado) -->
+				<!-- Sección de información del recibo -->
 				<div class="receipt-section">
 					<div class="receipt-item">Recibo</div>
 					<div class="receipt-item">5613316</div>
 					<div class="receipt-item">Original</div>
 				</div>
 
-				<!-- Línea 4: Fondos en efectivo y monto (alineado derecha) -->
+				<!-- Sección de información de pago en efectivo -->
 				<div class="payment-row fondos">
 					<div class="payment-label">Fondos en efectivo</div>
 					<div class="payment-box">
@@ -55,14 +65,14 @@ const { handlePrint } = useVueToPrint({
 					</div>
 				</div>
 
-				<!-- Línea 5: Autor manager (izquierda) -->
+				<!-- Sección de autorización -->
 				<div class="author-row">
 					<div class="author-label">Autor: Manager</div>
 					<div></div>
 					<!-- Espacio vacío para alineación -->
 				</div>
 
-				<!-- Línea 6: Comentario y Pago a cuenta (con space-between) -->
+				<!-- Sección de comentarios y pago a cuenta -->
 				<div class="payment-row comments">
 					<div class="comments-section">
 						<span class="label">Comentarios</span>
@@ -76,7 +86,7 @@ const { handlePrint } = useVueToPrint({
 					</div>
 				</div>
 
-				<!-- Línea 7: Firma (izquierda) y Total (derecha) -->
+				<!-- Sección de firma y total -->
 				<div class="signature-total-row">
 					<div class="signature-section">
 						<span class="label">Firma</span>
@@ -91,7 +101,7 @@ const { handlePrint } = useVueToPrint({
 					</div>
 				</div>
 
-				<!-- Pie de página -->
+				<!-- Pie de página con información de contacto -->
 				<div class="sap-footer">
 					<div class="footer-contact">
 						<p>Dirección: Av. Principal, Edif. Central, Caracas, Venezuela</p>
@@ -102,13 +112,15 @@ const { handlePrint } = useVueToPrint({
 		</div>
 	</div>
 
+	<!-- Controles de impresión (no aparecen en la versión impresa) -->
 	<div class="print-controls">
 		<button class="print-button" @click="handlePrint">Imprimir Comprobante</button>
 	</div>
 </template>
 
 <style scoped>
-.componentRef {
+/* Estilos para el contenedor principal del comprobante */
+.comprobante-container {
 	width: 100%;
 	display: flex;
 	justify-content: center;
@@ -116,7 +128,8 @@ const { handlePrint } = useVueToPrint({
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-.content-box {
+/* Caja de contenido con borde y sombra */
+.comprobante-content {
 	border: 1px solid #ccc;
 	padding: 20px;
 	width: 790px;
@@ -124,13 +137,14 @@ const { handlePrint } = useVueToPrint({
 	background-color: white;
 }
 
-.sap-document {
+/* Contenedor del documento SAP */
+.sap-documento {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
 }
 
-/* Header */
+/* Estilos de encabezado */
 .header-row {
 	display: flex;
 	justify-content: center;
@@ -147,7 +161,7 @@ const { handlePrint } = useVueToPrint({
 	text-align: center;
 }
 
-/* Información cliente */
+/* Estilos para información del cliente */
 .info-row {
 	display: flex;
 	justify-content: space-between;
@@ -161,26 +175,30 @@ const { handlePrint } = useVueToPrint({
 	align-items: center;
 }
 
+/* Etiquetas estándar */
 .label {
 	font-weight: bold;
 	margin-right: 10px;
 }
 
+/* Etiquetas con tamaño más pequeño */
 .label-2 {
 	font-size: small;
 	font-weight: bold;
 	margin-right: 10px;
 }
 
+/* Valores generales */
 .value {
 	margin-right: 5px;
 }
 
+/* Nombre del cliente con énfasis */
 .client-name {
 	font-weight: bold;
 }
 
-/* Número de identificación */
+/* Estilos para sección de identificación */
 .identificacion-row {
 	display: flex;
 	justify-content: space-between;
@@ -192,11 +210,10 @@ const { handlePrint } = useVueToPrint({
 	align-items: center;
 }
 
-/* Recibo */
+/* Estilos para sección de recibo */
 .receipt-section {
 	display: flex;
 	justify-content: center;
-	/* margin: 25px 0; */
 	margin-top: 70px;
 	margin-bottom: 180px;
 }
@@ -207,7 +224,7 @@ const { handlePrint } = useVueToPrint({
 	margin: 0 15px;
 }
 
-/* Fondos en efectivo */
+/* Estilos para filas de pago */
 .payment-row {
 	display: flex;
 	justify-content: space-between;
@@ -215,6 +232,7 @@ const { handlePrint } = useVueToPrint({
 	margin-bottom: 10px;
 }
 
+/* Espacio adicional para fondos en efectivo */
 .fondos {
 	margin-bottom: 15px;
 }
@@ -223,6 +241,7 @@ const { handlePrint } = useVueToPrint({
 	font-weight: bold;
 }
 
+/* Caja para mostrar montos */
 .payment-box {
 	border: 1px solid #000;
 	padding: 8px 15px;
@@ -230,7 +249,7 @@ const { handlePrint } = useVueToPrint({
 	text-align: right;
 }
 
-/* Autor */
+/* Estilos para sección de autor */
 .author-row {
 	display: flex;
 	justify-content: space-between;
@@ -241,7 +260,7 @@ const { handlePrint } = useVueToPrint({
 	font-weight: bold;
 }
 
-/* Comentarios y pago a cuenta */
+/* Estilos para comentarios y pago a cuenta */
 .comments {
 	margin-bottom: 25px;
 }
@@ -260,7 +279,7 @@ const { handlePrint } = useVueToPrint({
 	margin-right: 10px;
 }
 
-/* Firma y Total */
+/* Estilos para firma y total */
 .signature-total-row {
 	display: flex;
 	justify-content: space-between;
@@ -305,7 +324,7 @@ const { handlePrint } = useVueToPrint({
 	font-weight: bold;
 }
 
-/* Footer */
+/* Estilos para pie de página */
 .sap-footer {
 	margin-top: 30px;
 	padding-top: 15px;
@@ -313,16 +332,18 @@ const { handlePrint } = useVueToPrint({
 	text-align: center;
 }
 
+/* Distribución de información de contacto */
 .footer-contact {
 	display: flex;
 	justify-content: space-between;
 }
+
 .footer-contact p {
 	margin: 3px 0;
 	font-size: 12px;
 }
 
-/* Print Controls */
+/* Estilos para controles de impresión */
 .print-controls {
 	display: flex;
 	justify-content: center;
